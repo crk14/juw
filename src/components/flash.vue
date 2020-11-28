@@ -26,7 +26,7 @@
       <div class="item">
         <div class="item1">
           <div class="one">USDT购买</div>
-          <div class="two">点卡: 700点</div>
+          <div class="two">点卡: 100点</div>
         </div>
         <div class="item1" style="margin-top: 15px;">
           <div class="three">
@@ -40,7 +40,7 @@
 	  <div class="item">
 	    <div class="item1">
 	      <div class="one">USDT购买</div>
-	      <div class="two">点卡: 3500点</div>
+	      <div class="two">点卡: 500点</div>
 	    </div>
 	    <div class="item1" style="margin-top: 15px;">
 	      <div class="three">
@@ -54,7 +54,7 @@
 	  <div class="item">
 	    <div class="item1">
 	      <div class="one">USDT购买</div>
-	      <div class="two">点卡: 7000点</div>
+	      <div class="two">点卡: 1000点</div>
 	    </div>
 	    <div class="item1" style="margin-top: 15px;">
 	      <div class="three">
@@ -68,7 +68,7 @@
 	  <div class="item">
 	    <div class="item1">
 	      <div class="one">USDT购买</div>
-	      <div class="two">点卡: 14000点</div>
+	      <div class="two">点卡: 2000点</div>
 	    </div>
 	    <div class="item1" style="margin-top: 15px;">
 	      <div class="three">
@@ -82,7 +82,7 @@
 	  <div class="item">
 	    <div class="item1">
 	      <div class="one">USDT购买</div>
-	      <div class="two">点卡: 35000点</div>
+	      <div class="two">点卡: 5000点</div>
 	    </div>
 	    <div class="item1" style="margin-top: 15px;">
 	      <div class="three">
@@ -109,7 +109,7 @@
       <!-- <p class="hr" style="padding: 0;background-color: rgb(230,231,235)"></p> -->
       <p
         style="color: #2167ff;font-size: 0.31rem;padding: 0.4rem 0.42rem;font-weight: 540;"
-      >点卡是JUW 量化推出的交易服务手续费,购买点卡数量比例: 1USDT = 7点 </p>
+      >点卡是JUW 量化推出的交易服务手续费,购买点卡数量比例: 1USDT = 1点 </p>
     </div>
   </div>
 </template>
@@ -161,14 +161,14 @@ export default {
       // }
 
       if (bool) {
-        if (this.info.number < 100) {
+        if (this.info.number < number) {
           this.$toast.fail({ message: "USDT余额不足", duration: 1200 });
           return;
         }
         this.num = number;
         this.types = 1;
       } else {
-        if (this.info.safe_num < 1400) {
+        if (this.info.safe_num < number) {
           this.$toast.fail({ message: "JUW余额不足", duration: 1200 });
           return;
         }

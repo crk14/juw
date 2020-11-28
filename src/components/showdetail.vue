@@ -1,6 +1,6 @@
 <template>
-	<div class="inpareport">
-		<div class="tophader yancolor" style="display: flex;">
+	<div class="inpareport" style="min-height: 500px;">
+		<div class="tophader yancolor" style="display: flex;z-index: 100;">
 			<van-icon name="arrow-left" @click="$router.back()" />
 			<p v-if="type==0">点卡明细</p>
 			<p v-if="type==1" style="text-align: left;margin-left: .7rem;">交易记录</p>
@@ -9,6 +9,11 @@
 				 alt style="right: 0;left: 0.5rem;" />OKEX</p>
 		</div>
 		<p class="hr"></p>
+		<van-pull-refresh
+		  v-model="isLoading"
+		  success-text="刷新成功"
+		  @refresh="onRefresh"
+		>
 		<div class="page-item">
 			<div :class="{'active1':isshow==0}" @click="isshow=0">当日</div>
 			<div :class="{'active1':isshow==1}" @click="isshow=1">7天</div>
@@ -28,7 +33,7 @@
 			</div>
 			<van-icon name="play" />
 		</div>
-		<button @click="settime()" v-show="bool2" style="position: absolute;right: .15rem;top:3.72rem;background: rgb(34, 132, 253);color: #FFFFFF;height: .5rem;line-height: .5rem;">确认</button>
+		<button @click="settime()" v-show="bool2" style="position: absolute;right: .15rem;top:0.99rem;background: rgb(34, 132, 253);color: #FFFFFF;height: .5rem;line-height: .5rem;">确认</button>
 		<div class="datebox" v-show="show">
 			<van-datetime-picker v-model="currentDate" @confirm="confirm(0)" @cancel="cancel(0)" type="date" />
 		</div>
@@ -37,10 +42,10 @@
 		</div>
 		<p class="hr"></p>
 		<div v-show="bool1==0">
-			<div style="padding-left:.2rem;font-size: .26rem;margin-top: .4rem;margin-bottom: .2rem">{{starttime}}至 {{endtime}}
-				<span style="font-size: 0.26rem;margin-left: 0.26rem;">累计单数:{{count+'单'}}
-				<span style="margin-left: 18px;">
-				总收益: {{ profit==0?profit:Number(profit).toFixed(4)}}
+			<div style="display: flex; padding-left:.2rem;font-size: 12px;margin-top: .4rem;margin-bottom: .2rem">{{starttime}}至 {{endtime}}
+				<span style="font-size: 0.26rem;margin-left: 0.26rem;width: 55%;display: block;display: flex;">累计单数:{{count+'单'}}
+				<span style="text-align: center;display: block;flex: 1;">
+				总收益: {{ profit==0?profit:Number(profit).toFixed(2)}}
 				</span>
 				</span> </div>
 			<ul class="tabul" v-show="type==0">
@@ -114,14 +119,21 @@
 				</li>
 			</ul>
 		</div>
+		</van-pull-refresh>
 	</div>
 </template>
 
 <script>
+	import Vue from 'vue'
+	import { PullRefresh } from 'vant'
+	Vue.use(PullRefresh)
 	export default {
-		
+		components: {
+			PullRefresh
+		},
 		data() {
 			return {
+				isLoading: false,
 				type: this.$route.query.type,
 				info: {},
 				list: [],
@@ -212,6 +224,12 @@
 			window.addEventListener("scroll", this.handleScroll, true);
 		},
 		methods: {
+			onRefresh(){
+				this.jiesuan()
+				  setTimeout(() => {
+				        this.isLoading = false;
+				      }, 1000);
+				},
 			settime() {
 				if (this.valuefor && this.value) {
 					this.starttime = this.value
@@ -358,37 +376,13 @@
 				}).then(res => {
 					this.state = true;
 					if (res.data.code == 0) {
-						this.maxcost = res.data.max_cost
 						if (res.data.list.length > 0) {
 							for (var i = 0; i < res.data.list.length; i++) {
 								this.list.push(res.data.list[i]);
-
 								// this.plunow = "已加载完所有数据";
 							}
-							if (res.data.info.__proto__.constructor==Array) {
-								let char1 = []
-								let char = []
-								// let num = 0
-								let char2 = []
-								this.ljsyv = res.data.ljsyl
-							}else{
-								let char1 = []
-								let char = []
-								// let num = 0
-								let char2 = []
-								 this.ljsyv = res.data.ljsyl
-								
-							}
 							// console.log(this.list)
-
-						} else {
-							this.plunow = "暂无数据";
-							this.chartData = {}
-							this.chartData1 = {}
-							this.chartDat2 = {}
-							this.ljsyv = '0.00'
-						}
-						
+						} 
 						if (this.list.length ==res.data.count) {
 							this.state = false;
 							this.plunow = "已加载完所有数据";
@@ -401,6 +395,7 @@
 						}
 						this.profit = res.data.profit;
 						this.count = res.data.count;
+						console.log(666,this.count)
 					}
 				});
 

@@ -79,6 +79,8 @@ export default {
 	  }
 	  },
   created() {
+	  let time = localStorage.getItem('time')
+	  clearInterval(time)
 	  this.$axios.post("/index/member/getUserInfo").then(res => {
 	  	if (res.data.code == 0) {
 	  		this.infouser = res.data.info;

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="height: 100%;">
 		<van-icon onclick="window.history.go(-1)" name="arrow-left" style="position: absolute;left: 5px;top: 5px;z-index: 100;" size="25px"
 		 color="#ffffff" />
 		<img style="width: 100%;height: 100%;position: relative;" src="../assets/baana6.png"/>
@@ -191,17 +191,23 @@
 			},
 			savecode1() {
 				var ts = this;
-				jsBridge.ready(function() {
-					jsBridge.saveImageToAlbum(ts.imgpng, function(succ) {
-						succ ? ts.$toast.success({
-							message: "保存成功",
-							duration: 1200
-						}) : ts.$toast.fail({
-							message: "保存失败：转码失败或没有相册使用权限",
-							duration: 1200
+				if (!!navigator.userAgent.match(/citicbankmobile/i)) {
+					jsBridge.ready(function() {
+						jsBridge.saveImageToAlbum(ts.imgpng, function(succ) {
+							succ ? ts.$toast.success({
+								message: "保存成功",
+								duration: 1200
+							}) : ts.$toast.fail({
+								message: "保存失败：转码失败或没有相册使用权限",
+								duration: 1200
+							});
 						});
 					});
-				});
+				} else {
+					if(ts.imgpng){
+						window.open(ts.imgpng)
+					}
+				}
 
 			},
 			savecode() {

@@ -163,10 +163,10 @@ export default {
     return {
       info: [],
       list: [],
-      list1:[],
-      mygao: [],
-      title: "",
-      img:{},
+      // list1:[],
+      // mygao: [],
+      // title: "",
+      // img:{},
       arr:[],
       newlink:'',
 	  isshow:true,
@@ -183,13 +183,13 @@ export default {
 	  const env = process.env.NODE_ENV;
 	  if(env==='production'){  // 生产环境
 	  }else{  // 本地环境
-	  this.url = 'http://192.168.0.102'
+	  this.url = 'http://192.168.0.104:81'
 	  }
-    this.$axios
-      .get("/index/article/aotuMarketImg")
-      .then(res => {
-        this.img = res.data.info;
-      });
+    // this.$axios
+    //   .get("/index/article/aotuMarketImg")
+    //   .then(res => {
+    //     this.img = res.data.info;
+    //   });
 
       // this.$axios
       // .get("/index/article/indexBannerArt")
@@ -211,19 +211,19 @@ export default {
 
    
 
-    this.$axios
-      .get("/index/article/indexArt", { page: 1, limit: 10 })
-      .then(res => {
-        this.mygao = res.data.info;
-      });
-	  this.$axios
-	  .get("/index/mywallet/mywalletInfo", { page: 1, limit: 1 })
-	  .then(res => {
-	    if(res.data.info){
-	      this.movielist = res.data.info
-		}
+  //   this.$axios
+  //     .get("/index/article/indexArt", { page: 1, limit: 10 })
+  //     .then(res => {
+  //       this.mygao = res.data.info;
+  //     });
+	 //  this.$axios
+	 //  .get("/index/mywallet/mywalletInfo", { page: 1, limit: 1 })
+	 //  .then(res => {
+	 //    if(res.data.info){
+	 //      this.movielist = res.data.info
+		// }
 	  		 
-	  });
+	 //  });
 	  this.$axios
 	  .get("/index/rank/get_market")
 	  .then(res => {
@@ -244,6 +244,7 @@ export default {
   mounted: function() {},
   methods: {
 	  fn1(){
+		  
 		  this.time = setInterval(()=>{
 		  		  this.$axios
 		  		  .get("/index/rank/get_market")
@@ -252,6 +253,7 @@ export default {
 		  		  		this.list4 = res.data.data
 		  		  });
 		  },10000)
+		  localStorage.setItem('time',JSON.stringify( this.time))
 	  },
 	  fn3(bool){
 	  		  if(bool){

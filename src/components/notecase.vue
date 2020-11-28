@@ -25,7 +25,7 @@
 				</div>
 			</van-tab>
 			<van-tab title="现货量化" :title-style="active==1?'color:rgb(34,137,242)':'color:#000'">
-				
+
 				<p style="line-height: 110px;text-align: center;">敬请期待</p>
 			</van-tab>
 			<van-tab title="合约量化" :title-style="active==2?'color:rgb(34,137,242)':'color:#000'">
@@ -36,9 +36,9 @@
 							<div></div> 选择交易所
 						</div>
 						<div class="div2">
-							<div :class="{'avtive':bourse==0}" @click="bourse=0">Huobi</div>
-							<div :class="{'avtive':bourse==1}" @click="bourse=1">OKEX</div>
-							<div :class="{'avtive':bourse==2}" @click="bourse=2">Coinbene</div>
+							<div style="margin: 0 13%;" :class="{'avtive':bourse==0}" @click="bourse=0">Huobi</div>
+							<div style="margin: 0 13%;" :class="{'avtive':bourse==1}" @click="bourse=1">OKEX</div>
+							<!-- <div :class="{'avtive':bourse==2}" @click="bourse=2">Coinbene</div> -->
 						</div>
 					</div>
 					<p class="hr"></p>
@@ -56,11 +56,16 @@
 						<div class="div" style="width: 25%;">
 							<div></div> 选择仓位
 						</div>
-						<div class="div2">
-							<div style="margin: 0 2%;font-size: 14px;" :class="{'avtive':monery==5000}" @click="monery=5000">5000USDT</div>
-							<div style="margin: 0 2%;font-size: 14px;" :class="{'avtive':monery==10000}" @click="monery=10000">10000USDT</div>
-							<div style="margin: 0 2%;font-size: 14px;" :class="{'avtive':monery==20000}" @click="monery=20000">20000USDT</div>
+						<div class="div3">
+							<div  :class="{'avtive':monery==5000}" @click="monery=5000">5000USDT</div>
+							<div  :class="{'avtive':monery==10000}" @click="monery=10000">10000USDT</div>
 						</div>
+
+					</div>
+					<div class="div3">
+						<div  style="margin: 0px 4% 4px 4%;" :class="{'avtive':monery==20000}" @click="monery=20000">20000USDT</div>
+						<div  style="margin: 0px 4% 4px 4%;" :class="{'avtive':monery==50000}" @click="monery=20000">50000USDT</div>
+						<div style="margin: 0px 4% 2px 4%;" :class="{'avtive':monery==100000}" @click="monery=100000">100000USDT</div>
 					</div>
 					<p class="hr"></p>
 					<div class="p1">
@@ -69,52 +74,58 @@
 					<p class="hr"></p>
 					<div class="note-i" v-for="(item,index) in strategy_list" :key="index">
 						<div style="display: flex;">
-							<img v-show="item.symbol_deal == 'BTC'" src="../assets/btc.png" />
-							<img v-show="item.symbol_deal == 'ETH'" src="../assets/eth.png" />
-							<div class="one">
+							<img v-show="item.bidui.split('/')[0] == 'BTC'" src="../assets/btc.png" />
+							<img v-show="item.bidui.split('/')[0] == 'ETH'" src="../assets/eth.png" />
+							<div class="one" style="width: 90%;">
 								<div style="color: rgb(77,77,77);">
-									<span style="color: rgb(41,61,83)">{{item.symbol_deal}}</span><span style="color: #CCCCCC;">/</span>{{item.symbol}}
+									<span style="color: rgb(41,61,83)">{{item.bidui}}</span>
 								</div>
-								<div style="font-size: 14px; color: rgb(19,168,24);margin: 0 21px;" :style="item.up_down==1?'color: rgb(19,168,24)':'color: rgb(234,93,73)'">{{item.up_down==1?'开多':'开空'}}<span
+								<div style="font-size: 13px; color: rgb(19,168,24);margin-left: 21px;" >多-<span style="color: #bd1616;">空</span><span
 									 style="margin-left: 2px;">{{item.leverage}}X</span></div>
-								<div style="font-size: 14px;">账户权益: 10000USDT</div>
+								<div style="font-size: 14px;margin-left: auto;">账户权益: {{item.balance?(item.balance*1).toFixed(2):0}}USDT</div>
 							</div>
 						</div>
 						<div class="one one1">
-							<div @click="toshowdetail(true)" style="margin: 0 44px 0 30px;display: flex;">持仓 <img src="../assets/1008.png" /> </div>
-							<div  @click="toshowdetail()" style="display: flex;">交易记录 <img src="../assets/1008.png" /></div>
-							<div style="flex: 1;text-align: center;">状态: <span style="color: #4389eb;">{{item.status == 1?'运行中':'待开启'}}</span></div>
+							<div @click="toshowdetail(true)" style="margin: 0 44px 0 30px;display: flex;">持仓 <img src="../assets/1008.png" />
+							</div>
+							<div @click="toshowdetail()" style="display: flex;">交易记录 <img src="../assets/1008.png" /></div>
+							<div style="flex: 1;text-align: center;">状态: <span style="color: #4389eb;">{{item.status == 1?'运行中':item.stop_type == 1?'临时停止':item.stop_type == 0?'待开启':item.stop_type == 8? '点卡不足':'待开启'}}</span></div>
 						</div>
-						<div class="two">
-							<div>
-								<p class="p">账户权益</p>
-								<p>10000.00<span style="margin-left: 2px;">USDT</span></p>
-								<P class="p">持仓均价</P>
-								<p>{{item.buy_count_average}}<span style="margin-left: 2px;">USDT</span></p>
-							</div>
-							<div>
-								<p class="p">可开张数</p>
-								<p>1000张</p>
-								<P class="p">交易笔数</P>
-								<p>{{item.sell_count}}</p>
-							</div>
-							<div>
-								<p class="p">持仓数量</p>
-								<p>{{item.buy_count_amount}}张</p>
-								<P class="p">实现收益</P>
-								<p>{{(item.profit_cash*1).toFixed(2)}}<span style="margin-left: 2px;">USDT</span></p>
-							</div>
+					<div class="two">
+						<div >
+							<p class="p">建仓单数</p>
+							<p>多: {{item.up_count}}<span style="margin-left: 2px;">单</span></p>
+							<p>空: {{item.down_count}}<span style="margin-left: 2px;">单</span></p>
+							<P class="p">交易笔数</P>
+							<p>{{item.sell_count}}</p>
 						</div>
-						<div class="button">
-							<button @click="fn5(item.id,item.stop_type)">删除策略</button>
-							<button @click="close_now(item.id,item.status)">一键平仓</button>
-							<button @click="close_now2(item.id)">临时停止</button>
-							<button @click="open_strategy(item.id,'1',item.up_down)" style="background-color: #4389eb;color: #FFFFFF;border: 0;margin-right: 15px;">启动交易</button>
+						<div>
+							<p class="p">持仓数量</p>
+							<p>多: {{item.up_filled_qty?item.up_filled_qty:0}} 张</p>
+							<p>空: {{item.down_filled_qty?item.down_filled_qty:0}} 张</p>
+							<P class="p">实现收益</P>
+							<p>{{(item.profit_cash*1).toFixed(2)}}<span style="margin-left: 2px;">USDT</span></p>
+										
+							
+						</div>
+						<div >
+							<P class="p">持仓均价</P>
+							<p>多: {{(item.up_price_avg*1).toFixed(2)}}<span style="margin-left: 2px;">USDT</span></p>
+							<p>空: {{(item.down_price_avg*1).toFixed(2)}}<span style="margin-left: 2px;">USDT</span></p>
+						<p class="p">收益率</p>
+						<p>{{item.syl.toFixed(2)}}%</p>
+						</div>
+					</div>
+						<div class="button" style="padding-top: 7px;border-top: 1px solid #eee;">
+							<button  @click="fn5(item.id,item.stop_type)">删除策略</button>
+							<button :class="{'active':item.status == 1}" @click="show2 = true;id=item.id">一键平仓</button>
+							<button  :class="{'active':item.status == 1}" @click="close_now2(item.id)">临时停止</button>
+							<button :class="{'active':item.status == 0}" @click="open_strategy(item.id,'1',item.up_down)" style="margin-right: 15px;">启动交易</button>
 						</div>
 						<p class="hr"></p>
 					</div>
 				</div>
-			
+
 			</van-tab>
 		</van-tabs>
 		<van-dialog v-model="show2" title="选择多空" show-cancel-button :before-close="beforeClose">
@@ -145,22 +156,66 @@
 				strategy_list: '',
 				show2: false,
 				checked2: true,
-				checked3: true
+				checked3: true,
+				up_down:0,
+				id:''
 			};
 		},
 		created() {
+			let time = localStorage.getItem('time')
+			clearInterval(time)
 			this.start()
 		},
-		watch:{
-			bourse(newvalue,oldvalue){
+		watch: {
+			bourse(newvalue, oldvalue) {
+				if(newvalue){
+				}else{
+					this.$toast.fail({
+						message: '暂未开放',
+						duration: 1200
+					});
+				}
 				this.start()
 			}
 		},
 		methods: {
 			confim() {
-				this.show2 = true
-				return
-
+				// this.show2 = true
+				// return
+                  let obj = {};
+					if (this.bourse == 1) {
+						obj.bourse = 4
+					}
+					obj.symbol = 'USDT'
+					obj.symbol_deal = this.symbol
+					obj.amount = this.monery
+					obj.type = 2
+					let arr = [1, 0];
+					// if (this.checked2) {
+					// 	obj.up_down = '1'
+					// }
+					// if (this.checked3) {
+					// 	obj.up_down = '0'
+					// }
+					if (this.checked3 && this.checked2) {
+						obj.up_down = arr.join(",");
+					}
+					this.$axios.post(`/index/swapstrategy/set_strategy_all`, obj).then((res) => {
+						if (res.data.code == 0) {
+							this.$toast.success({
+								message: res.data.msg,
+								duration: 1200
+							})
+							setTimeout(() => {
+								this.start();
+							}, 1200)
+						} else {
+							this.$toast.fail({
+								message: res.data.msg,
+								duration: 1200
+							});
+						}
+					})
 			},
 			start() {
 				let str;
@@ -171,13 +226,13 @@
 					str = 1
 				}
 				this.$axios
-					.post(`/index/swapstrategy/get_strategy_list`, {
+					.post(`/index/swapstrategy/get_trend_strategy_list`, {
 						symbol: 'USDT',
 						bourse: str,
-						type: 1,
+						type: 2,
 					})
 					.then((res) => {
-						if(res.data.code == 0){
+						if (res.data.code == 0) {
 							this.strategy_list = res.data.list;
 						}
 					});
@@ -215,54 +270,82 @@
 						});
 				});
 			},
-			close_now(id, str) {
-				if (str == 0) {
-					this.$toast.fail({
-						message: "请先开启策略",
-						duration: 2000
-					})
-					return
-				}
-				this.$axios
-					.post("/index/swap/clearance", {
-						id
-					})
-					.then((res) => {
-						if (res.data.code == 0) {
-							this.$toast.success({
-								message: res.data.msg,
-								duration: 2000
-							});
-							this.start();
-							this.closedeal = false;
-						} else {
-							this.$toast.fail({
-								message: res.data.msg,
-								duration: 2000
-							});
-							this.closedeal = false;
-						}
-					});
+			close_now() {
+				Dialog.confirm({
+				  title: "确定平仓",
+				  message:
+				    "是否要一键平仓？",
+				})
+				  .then(() => {
+				    // on confirm
+					let arr = [1, 0];
+					if (this.checked2) {
+						this.up_down = '1'
+					}
+					if (this.checked3) {
+						this.up_down = '0'
+					}
+					if (this.checked3 && this.checked2) {
+						this.up_down = arr.join(",");
+					}
+				  this.$axios
+				  	.post("/index/swap/trend_clearance", {
+				  		id:this.id,
+						up_down: this.up_down
+				  	})
+				  	.then((res) => {
+				  		if (res.data.code == 0) {
+				  			this.$toast.success({
+				  				message: res.data.msg,
+				  				duration: 2000
+				  			});
+				  			this.start();
+				  			this.closedeal = false;
+				  		} else {
+				  			this.$toast.fail({
+				  				message: res.data.msg,
+				  				duration: 2000
+				  			});
+				  			this.closedeal = false;
+				  		}
+				  	});
+				  })
+				  .catch(() => {
+				    // on cancel
+				  });
+				
 			},
 			close_now2(id) {
-				this.$axios
-					.post("/index/swap/pause_strategy", {
-						id
-					})
-					.then((res) => {
-						if (res.data.code == 0) {
-							this.$toast.success({
-								message: res.data.msg,
-								duration: 2000
-							});
-							this.start();
-						} else {
-							this.$toast.fail({
-								message: res.data.msg,
-								duration: 2000
-							});
-						}
-					});
+				Dialog.confirm({
+				  title: "确定停止",
+				  message:
+				    "是否要临时停止？",
+				})
+				  .then(() => {
+				    // on confirm
+				  this.$axios
+				  	.post("/index/swap/pause_strategy", {
+				  		id
+				  	})
+				  	.then((res) => {
+				  		if (res.data.code == 0) {
+				  			this.$toast.success({
+				  				message: res.data.msg,
+				  				duration: 2000
+				  			});
+				  			this.start();
+				  		} else {
+				  			this.$toast.fail({
+				  				message: res.data.msg,
+				  				duration: 2000
+				  			});
+				  		}
+				  	});
+				  })
+				  .catch(() => {
+				    // on cancel
+				  });
+				
 			},
 			open_strategy(s, i, b) {
 				this.$axios
@@ -294,66 +377,36 @@
 				if (this.bourse == 0) {
 					str = 1
 				}
-			  if (!this.bourse) {
-			    this.$toast.fail({ message: "请选择交易所", duration: 2000 });
-			    return;
-			  }
-			  if (bool) {
-			   let abc = []
-			   this.strategy_list.forEach(item=>{
-			   	abc.push(item.symbol_deal)
-			   })
-			   abc = [...new Set(abc)].join(',')
-			     this.$router.push({
-			          name:'持仓',
-			          params:{
-			            bourse:str,
-			   		 symbol:'USDT',
-			   		 stage:abc
-			            }
-			           })
-			  } else {
-			    this.$router.push(
-			      "showdetail?bourse=" + str + "&type=1" + "&heyeu=1"
-			    );
-			  }
+				if (!this.bourse) {
+					this.$toast.fail({
+						message: "请选择交易所",
+						duration: 2000
+					});
+					return;
+				}
+				if (bool) {
+					// let abc = []
+					// this.strategy_list.forEach(item => {
+					// 	abc.push(item.symbol_deal)
+					// })
+					// abc = [...new Set(abc)].join(',')
+					this.$router.push({
+						name: '持仓',
+						// params: {
+						// 	bourse: str,
+						// 	symbol: 'USDT',
+						// 	stage: abc
+						// }
+					})
+				} else {
+					this.$router.push(
+						"showdetail?bourse=" + str + "&type=1" + "&heyeu=1"
+					);
+				}
 			},
 			beforeClose: function(action, done) {
 				if (action === "confirm") {
-					let obj = {};
-					if (this.bourse == 1) {
-						obj.bourse = 4
-					}
-					obj.symbol = 'USDT'
-					obj.symbol_deal = this.symbol
-					obj.amount = this.monery
-					obj.type = 1
-					let arr = [1, 0];
-					if (this.checked2) {
-						obj.up_down = '1'
-					}
-					if (this.checked3) {
-						obj.up_down = '0'
-					}
-					if (this.checked3 && this.checked2) {
-						obj.up_down = arr.join(",");
-					}
-					this.$axios.post(`/index/swapstrategy/set_strategy_all`, obj).then((res) => {
-						if (res.data.code == 0) {
-							this.$toast.success({
-								message: res.data.msg,
-								duration: 1200
-							})
-							setTimeout(() => {
-								this.start();
-							}, 1200)
-						} else {
-							this.$toast.fail({
-								message: res.data.msg,
-								duration: 1200
-							});
-						}
-					})
+					this.close_now()
 					done(); // 关闭提示框
 				} else if (action === "cancel") {
 					done(); // 关闭提示框
@@ -374,6 +427,27 @@
 		min-height: 760px;
 	}
 
+	.div3 {
+		display: flex;
+		flex: 1;
+		line-height: 20px;
+		div {
+			flex: 1;
+			margin: 7px 7%;
+			text-align: center;
+			background-color: rgb(245,245,245);
+			border: 1px solid rgb(197,197,197);
+			border-radius: 4px;
+			color: rgb(169,169,169);
+		}
+
+		.avtive {
+			
+			color: rgb(34, 137, 242);
+			border: 1px solid rgb(34, 137, 242);
+		}
+	}
+
 	.note-t {
 		display: flex;
 		padding: 0 0.28rem;
@@ -387,7 +461,9 @@
 
 			div {
 				flex: 1;
-				margin: 0 6%;
+				margin: 0 10%;
+				text-align: center;
+				font-size: 13px;
 			}
 
 			.avtive {
@@ -395,6 +471,8 @@
 				border-bottom: 1px solid rgb(34, 137, 242);
 			}
 		}
+
+		.div3 {}
 
 		.div {
 			line-height: 36px;
@@ -464,16 +542,17 @@
 
 		.two {
 			display: flex;
-
+			margin-bottom: 7px;
 			div {
 				flex: 1;
 				text-align: center;
-				line-height: 26px;
+				line-height: 22px;
 				color: rgb(94, 94, 94);
 
 				.p {
+					line-height: 26px;
 					margin-top: 5px;
-					color: rgb(133, 135, 151);
+					color: #000;
 				}
 			}
 		}
@@ -482,7 +561,7 @@
 			width: 100%;
 			text-align: right;
 			margin-bottom: 8px;
-
+			
 			button {
 				width: 70px;
 				line-height: 20px;
@@ -490,7 +569,12 @@
 				border: 1px solid rgb(188, 187, 193);
 				border-radius: 4px;
 				background-color: #FFFFFF;
-				margin-right: 5px;
+				margin-right: 15px;
+			}
+			.active{
+				background-color: #4389eb;
+				color: #FFFFFF;
+				border: 0;
 			}
 		}
 	}

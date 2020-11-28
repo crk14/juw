@@ -62,10 +62,6 @@ export default {
     };
   },
   created() {
-	  this.bourse = this.$route.params.bourse
-	  this.symbol = this.$route.params.symbol
-	   this.stage = this.$route.params.stage
-	   console.log(this.stage)
     this.fn()
 	
   },
@@ -77,9 +73,9 @@ export default {
 	   fn(){
 		   this.$axios
 		     .post("/index/swapstrategy/get_position", {
-		      symbol: this.symbol,
-		      bourse: this.bourse,
-		      symbol_deal:this.stage
+		      symbol: 'USDT',
+		      bourse: 4,
+		      symbol_deal:'ETH,BTC'
 		     })
 		     .then(res => {
 		   	  this.list = res.data.data
@@ -92,7 +88,7 @@ export default {
 		   		    .post("/index/swapstrategy/get_position", {
 		   		     symbol: this.symbol,
 		   		     bourse: this.bourse,
-		   		     symbol_deal:this.stage
+		   		     symbol_deal:'ETH,BTC'
 		   		    })
 		   		    .then(res => {
 		   		  	  this.list = res.data.data

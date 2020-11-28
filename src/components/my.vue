@@ -21,12 +21,12 @@
 			</div>
 			<div style="border-right: 1px solid #ccc;">
 				<p class="p">点卡余额</p>
-				<p>{{infoamout.safe_num}}</p>
+				<p>{{infoamout.point_num}}</p>
 				<p @click="$router.push('flash')" class="p1">购买</p>
 			</div>
 			<div>
 				<p class="p">JUW余额</p>
-				<p>{{infoamout.point_num}}</p>
+				<p>{{infoamout.safe_num}}</p>
 				<p @click="$router.push('carrymoney')" class="p1">提现</p>
 			</div>
 		</div>
@@ -116,6 +116,8 @@
 			};
 		},
 		created() {
+			let time = localStorage.getItem('time')
+			clearInterval(time)
 			this.$axios.post("/index/member/getUserInfo").then(res => {
 				if (res.data.code == 0) {
 					this.infouser = res.data.info;

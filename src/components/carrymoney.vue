@@ -21,7 +21,7 @@
           placeholder="请输入您的钱包地址"
         />
         <p class="hr"></p>
-        <p>可用JUW余额：{{info.safe_num}}</p>
+        <p>可用JUW余额：{{info.safe_num?info.safe_num:0}}</p>
       </li>
       <li>
         <p>提币数量</p>
