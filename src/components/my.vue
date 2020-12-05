@@ -1,7 +1,11 @@
 <template>
-	<div class="my" style="background-color: #FFFFFF !important;">
+	<div class="my" style="background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));font-size: 14px;min-height: 760px;">
 		<!-- <p class="toptitle">我的</p> -->
-		<div class="my-header">
+		<div class="tophader" style="		background-color: transparent;">
+		  <van-icon name="arrow-left"  color="#ffffff" onclick="window.history.go(-1)"/>
+		  <p style="color: #FFFFFF;font-weight: 440;">个人中心</p>
+		</div>
+		<!-- <div class="my-header">
 			<img src="../assets/911.png" style="width: 100%;height: 3.28rem;" />
 			<img @click="$router.push('personmsg')" v-if="infouser.avatar" :src="infouser.avatar" alt style="width: 59px;height: 59px;border-radius: 50%;
 		position: absolute;left: 16px;top: 38px;" />
@@ -9,89 +13,91 @@
 			<div style="position: absolute;left: 100px;top: 75px;color: #FFFFFF;font-size: 16px;">UID:{{infouser.id}}</div>
 			<img @click="fn1(infouser.id)" style="position: absolute;left: 222px;top: 78px;width: 15px;height: 15px;" src="../assets/0796.png" />
 			<div style="position: absolute;left: 100px;top: 102px;background-color: rgb(241,217,31);padding: 0 8px; font-size: 12px;line-height: 17px;text-align: center;border-radius: 10px;">{{infouser.is_need == 2?infouser.level_name:'注册会员'}}</div>
-			<!-- <div @click="$router.push('carrymoney')" style="position: absolute;right: 50px;top: 61px;color: #FFFFFF;font-size: 16px;">提现</div>
-			<img @click="$router.push('carrymoney')" style="position: absolute;right: 27px;top: 62px;width: 28px;height: 21px;" -->
-			 <!-- src="../assets/0799.png" /> -->
-		</div>
+		</div> -->
 		<div class="my-b">
-			<div style="border-right: 1px solid #ccc;">
-				<p class="p">USDT余额</p>
-				<p>{{infoamout.number}}</p>
-				<p @click="$router.push('metationpage')" class="p1">充值</p>
+			<img @click="$router.push('personmsg')"  :src="infouser.avatar" alt 
+			 />
+			<div style="font-size: 21px;">{{infouser.nick_name}}</div>
+			<div style="font-size: 19px;">UID:{{infouser.id}}</div>
+			<div class="box">{{infouser.is_need == 2?infouser.level_name:'注册会员'}}</div>
+			<div class="div">
+				<div style="border-right: 1px solid #ccc;">
+					<p class="p">USDT余额</p>
+					<p>{{infoamout.number}}</p>
+					<p @click="$router.push('metationpage')" class="p1">充值</p>
+				</div>
+				<div style="border-right: 1px solid #ccc;">
+					<p class="p">点卡余额</p>
+					<p>{{infoamout.point_num}}</p>
+					<p @click="$router.push('flash')" class="p1">购买</p>
+				</div>
+				<div>
+					<p class="p">JUW余额</p>
+					<p>{{infoamout.safe_num}}</p>
+					<p @click="$router.push('carrymoney')" class="p1">提现</p>
+				</div>
 			</div>
-			<div style="border-right: 1px solid #ccc;">
-				<p class="p">点卡余额</p>
-				<p>{{infoamout.point_num}}</p>
-				<p @click="$router.push('flash')" class="p1">购买</p>
-			</div>
-			<div>
-				<p class="p">JUW余额</p>
-				<p>{{infoamout.safe_num}}</p>
-				<p @click="$router.push('carrymoney')" class="p1">提现</p>
-			</div>
+			
 		</div>
-		<div class="pure_top"></div>
-		<!-- <img src="../assets/fuxingpng.png" style="position: absolute;top: 3rem;width: 100.2%;" /> -->
-		<div class="labwarp" style="background-color: #fff;">
-			<div class="tablecon" style="margin-top: 33px;">
-				<!-- <router-link to="/intertranfor"> @click="stayopen"-->
+		<div  style="background-color: #fff;margin: 0% 5%;border-radius: 6px;">
+			<div class="tablecon" style="margin-top: 13px;">
 				<router-link to="/certification">
-					<div :style="string">
+					<div >
 						<p>
-							<img src="../assets/1201.png" alt style="width: .35rem;top: .02rem;" />
+							<img src="../assets/3001.png" alt style="" />
 							<span>实名认证</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou"  size="18" color="rgb(186,186,186)"/>
 					</div>
 				</router-link>
 				<router-link to="fenxiang">
 					<div>
 						<p>
-							<img src="../assets/1202.png" alt style="top:0.05rem;" />
+							<img src="../assets/3002.png" alt style="" />
 							<span>分享邀请</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou" size="18" color="rgb(186,186,186)"/>
 					</div>
 				</router-link>
 				<!-- </router-link> -->
 				<router-link to="/fuli">
 					<div>
 						<p>
-							<img src="../assets/0798.png" alt style="top: .04rem;" />
+							<img src="../assets/3003.png" alt style="" />
 							<span>福利中心</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou" size="18" color="rgb(186,186,186)"/>
 					</div>
 				</router-link>
 				<router-link to="/metationadr">
 					<div>
 						<p>
-							<img src="../assets/1203.png" alt style="top:.058rem" />
+							<img src="../assets/3004.png" alt style="" />
 							<span>绑定钱包</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou" size="18" color="rgb(186,186,186)"/>
 					</div>
 				</router-link>
 				<router-link to="/chagepass">
 					<div>
 						<p>
-							<img src="../assets/1204.png" alt style="width: .35rem;top: .06rem;" />
+							<img src="../assets/3005.png" alt style="" />
 							<span>安全中心</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou" size="18" color="rgb(186,186,186)"/>
 					</div>
 				</router-link>
 				<router-link to="/callcenter">
 					<div>
 						<p>
-							<img src="../assets/1205.png" alt style="width: .35rem;top: .046rem;" />
+							<img src="../assets/3006.png" alt style="" />
 							<span>联系客服</span>
 						</p>
-						<van-icon name="arrow" class="jtou" />
+						<van-icon name="arrow" class="jtou" size="18" color="rgb(186,186,186)" />
 					</div>
 				</router-link>
 			</div>
-			<div style="height: 60px;"></div>
+			<div style="height: 40px;"></div>
 			<textarea cols="20" rows="10" id="biao2" style="opacity: 0;height: 1px;">{{infouser.id}}</textarea>
 			<!-- <button type="button" class="changebton"  style="background: #EBEDF0;" @click="send">退出登录</button> -->
 		</div>
@@ -449,13 +455,13 @@
 		div {
 			justify-content: space-between;
 			display: flex;
-			padding: 0.32rem 0.3rem;
-			border-bottom: 7px solid rgb(244, 244, 244);
+			padding: 0.28rem 0.3rem;
+			border-bottom: 1px solid rgb(239,239,239);
 		}
 
 		span {
 			font-size: 0.32rem;
-			color: rgb(51, 51, 51);
+			color: rgb(168,168,168);
 			margin-left: 0.3rem;
 			font-family: PingFang SC;
 		}
@@ -468,7 +474,8 @@
 
 		img {
 			position: relative;
-			width: 0.35rem;
+			width: 0.52rem;
+			margin-bottom: -6.5px;
 		}
 	}
 
@@ -535,35 +542,62 @@
 	}
 
 	.my-b {
-		position: absolute;
-		top: 137px;
-		display: flex;
+		// position: absolute;
+		// top: 137px;
 		width: 90%;
-		left: 5%;
+		// left: 5%;
+		margin: 60px auto 0;
 		border-radius: 6px;
 		z-index: 100;
-		padding: 20px 0;
+		padding: 35px 0 16px;
 		background-color: #fff;
-		box-shadow: 1px 4px 5px #ccc;
-
+		text-align: center;
+		position: relative;
+		// box-shadow: 1px 4px 5px #ccc;
+		.div{
+			display: flex;
+		}
+		img{
+			width: 72px;
+			    height: 72px;
+			    border-radius: 50%;
+			    position: absolute;
+			    top: -42px;
+			    border: 3px solid rgb(114, 104, 255);
+			    left: 39%;
+		}
+		.box{
+			    width: 18%;
+			    color: rgb(255, 255, 255);
+			    font-size: 12px;
+			    background: linear-gradient(to right, rgb(129, 82, 249), rgb(85, 141, 252));
+			    // font-weight: 550;
+			    line-height: 18px;
+			    border-radius: 10px;
+			    margin: 6px auto 12px;
+		}
 		div {
 			flex: 1;
 			text-align: center;
-
+			p{
+				color: rgb(154,154,154);
+				font-weight: 550;
+			}
 			.p {
 				// margin-top: 6px;
-				color: rgb(145, 145, 146);
-				font-weight: bold;
-				font-size: 15px;
+				color: rgb(198,198,198);
+				font-weight:450;
+				font-size: 14px;
 			}
 			.p1{
-				font-size: 13px;
-				background-color: #CCCCCC;
-				line-height: 19px;
-				border-radius: 10px;
-				width: 48px;
-				margin-left: 29%;
-				margin-top: 10px;
+				font-size: 12px;
+				background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));
+				line-height: 18px;
+				border-radius: 3px;
+				width: 60px;
+				margin-left: 26%;
+				margin-top: 8px;
+				color: #fff;
 			}
 			p {
 				line-height: 27px;

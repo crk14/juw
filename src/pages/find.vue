@@ -1,10 +1,10 @@
 
 <template>
-	<div style="background-color: rgb(244,245,250);font-size: 14px;">
-		<img class="img" src="../assets/9090.png"/>
+	<div style="background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));font-size: 14px;min-height: 760px;">
+		<!-- <img class="img" src="../assets/9090.png"/> -->
 		<div class="tophader">
 		  <van-icon name="arrow-left"  color="#ffffff" onclick="window.history.go(-1)"/>
-		  <p style="color: #FFFFFF;font-weight: 540;">量化收益排行榜</p>
+		  <p style="color: #FFFFFF;font-weight: 540;">JUW收益排行榜</p>
 		</div>
 		<div class="title">
 			<img class="ig"  :src="infouser.avatar"/>
@@ -13,14 +13,11 @@
 				<div >{{profit?profit:0}} USDT</div>
 			</div>
 			<div class="two">
-				<div @click="active='a'">日榜
-					<img v-show="active=='a'" src="../assets/sanjiaox.png" />
+				<div @click="active='a'" :class="{'active':active=='a'}">日榜
 				</div>
-				<div  @click="active='b'">周榜
-				<img v-show="active=='b'" src="../assets/sanjiaox.png" />
+				<div style="border-left: 0.5px solid #fff;border-right: 0.5px solid #fff;" @click="active='b'" :class="{'active':active=='b'}">周榜
 				</div>
-				<div  @click="active='c'">月榜
-				<img v-show="active=='c'" src="../assets/sanjiaox.png" />
+				<div  @click="active='c'" :class="{'active':active=='c'}">月榜
 				</div>
 			</div>
 		</div>
@@ -107,7 +104,7 @@ export default {
 		height: 195px;
 	}
 	.tophader{
-		position: absolute;
+		// position: absolute;
 		left: 0;
 		top: 0;
 		z-index: 100;
@@ -115,7 +112,7 @@ export default {
 		background-color: transparent;
 	}
 	.title{
-		position: absolute;
+		// position: absolute;
 		left: 0;
 		top: 46px;
 		z-index: 100;
@@ -126,7 +123,7 @@ export default {
 			height: 46px;
 			border-radius: 50%;
 			padding: 2px;
-			border: 1px solid rgb(128,196,255);
+			// border: 1px solid rgb(128,196,255);
 			margin: 1px auto 14px;
 			display: block;
 		}
@@ -143,8 +140,18 @@ export default {
 			display: flex;
 			text-align: center;
 			justify-content: space-between;
-			margin-top: 8.7%;
-			font-size: 14px;
+			// margin-top: 8.7%;
+			font-size: 13px;
+			line-height: 30px;
+			border: 0.5px solid #fff;
+			margin: 8.7% 4% 0;
+			border-top-right-radius:5px;
+			border-top-left-radius:5px;
+			.active{
+				background-color: #fff;
+				color: rgb(114,104,255);
+				border: 0;
+			}
 			div{
 				flex: 1;
 				// display: flex;

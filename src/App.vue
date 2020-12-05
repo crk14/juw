@@ -255,41 +255,16 @@ export default {
 }
 
 .changebton {
-  width: 92%;
+  width: 100%;
   background: #2167ff;
   height: 1rem;
   line-height: 1rem;
-  margin: 1rem auto;
+  margin: 1rem auto .8rem;
   text-align: center;
   color: white;
   border-radius: 25px;
   font-size: 0.3rem;
   display: block;
-}
-.note {
-  // .van-switch {
-  //   width: 0.4rem;
-  //   height: 0.24rem;
-  // }
-  // .van-switch__node {
-  //   width: 0.24rem;
-  //   height: 0.24rem;
-  //   background: #fff;
-  //   border-radius: 50%;
-  // }
-  // .van-switch {
-  //   background-color: #bababa;
-  //   margin-left: 0.1rem;
-  //   position: relative;
-  //   top: 0.04rem;
-  // }
-
-  // .van-switch--on {
-  //   background: #3e9ef6;
-  // }
-  // .van-switch--on .van-switch__node {
-  //   transform: translateX(0em);
-  // }
 }
 .twop4k53jk45 .van-switch {
   margin-left: 0.3rem;

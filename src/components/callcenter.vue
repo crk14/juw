@@ -1,11 +1,21 @@
 <template>
-  <div class="callcenter">
+  <div class="callcenter" style="background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));font-size: 14px;min-height: 815px;">
     <div class="tophader" onclick="window.history.go(-1)">
       <van-icon name="arrow-left" />
       <p>联系客服</p>
     </div>
-    <p class="hr"></p>
-    <div class="contestdiv">
+	<div class="my-b">
+		<img  class="img" :src="infouser.avatar" alt 
+		 />
+		<p class="bigtitle">您的专属微信客服</p>
+		<p class="somot">7x24小时为您提供客服服务</p>
+		<p class="bigtitle " style="margin-top: 25px;font-size: 15px;">扫描下方二维码添加</p>
+		<p class="bigtitle" style="font-size: 15px;">您的专属客服微信</p>
+		<p class="bigtitle" style="font-size: 15px;">支持安卓/苹果</p>
+		<img class="img1" :src="info.wx" alt />
+		<!-- <img class="img1" src="../assets/icon-wx@2x.png" alt /> -->
+	</div>
+   <!-- <div class="contestdiv">
       <p class="bigtitle">您的专属微信客服</p>
       <p class="somot">7x24小时为您提供客服服务</p>
       <div class="borders">
@@ -23,26 +33,8 @@
         </div>
         <p class="shoms">使用微信识别添加客服</p>
       </div>
-    </div>
-    <div class="contestdiv">
-      <p class="bigtitle">您的专属QQ客服</p>
-      <p class="somot">7x24小时为您提供客服服务</p>
-      <div class="borders">
-        <div class="flexs">
-          <p class="qimg">
-            <img src="../assets/icon-qq@2x.png" alt />
-          </p>
-          <div>
-            <p class="one">您的专属客服</p>
-            <p class="two">7x24小时为您提供客服服务</p>
-          </div>
-        </div>
-        <div id="qrcodes">
-          <img :src="info.qq_img" alt />
-        </div>
-        <p class="shoms">使用QQ识别添加客服</p>
-      </div>
-    </div>
+    </div> -->
+  
   </div>
 </template>
 
@@ -50,7 +42,8 @@
 export default {
   data() {
     return {
-      info: {}
+      info: {},
+	  infouser: {},
     };
   },
   created() {
@@ -59,6 +52,11 @@ export default {
         this.info = res.data.info;
       }
     });
+	this.$axios.post("/index/member/getUserInfo").then(res => {
+		if (res.data.code == 0) {
+			this.infouser = res.data.info;
+		}
+	});
   },
   mounted() {},
   methods: {
@@ -90,6 +88,30 @@ export default {
     font-size: 0.36rem;
   }
 }
+	.my-b {
+		width: 90%;
+		margin: 60px auto 0;
+		border-radius: 6px;
+		z-index: 100;
+		padding: 35px 0 30px;
+		background-color: #fff;
+		text-align: center;
+		position: relative;
+		.img{
+			width: 72px;
+			    height: 72px;
+			    border-radius: 50%;
+			    position: absolute;
+			    top: -42px;
+			    border: 3px solid rgb(114, 104, 255);
+			    left: 39%;
+		}
+		.img1{
+			margin-top: 25px;
+			height: 160px;
+			width: 160px;
+		}
+		}
 .contestdiv {
   padding: 0.3rem;
 }

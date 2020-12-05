@@ -46,7 +46,7 @@
       </p>
     </div>
 
-    <button type="button" class="changebton" @click="send" style="background-color: #306ce8;border-radius: 25px;">退出登录</button>
+    <button type="button" class="changebton" @click="send" style="background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));border-radius: 25px;">退出登录</button>
 
     <van-dialog v-model="show" title="修改昵称" show-cancel-button :before-close="beforeClose">
       <van-field v-model="value" placeholder="请输入昵称" />

@@ -38,7 +38,7 @@
         <button class="sendcode" @click="setcode" style="">获取验证码</button>
         <p class="hr"></p>
       </div>
-      <button type="button" class="changebton" @click="send" style="background: linear-gradient(0deg, #2167ff, #2167ff;">确定</button>
+      <button type="button" class="changebton" @click="send" >确定</button>
     </div>
   </div>
 </template>

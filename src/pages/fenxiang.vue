@@ -1,43 +1,39 @@
 <template>
-	<div style="height: 100%;">
-		<van-icon onclick="window.history.go(-1)" name="arrow-left" style="position: absolute;left: 5px;top: 5px;z-index: 100;" size="25px"
-		 color="#ffffff" />
-		<img style="width: 100%;height: 100%;position: relative;" src="../assets/baana6.png"/>
+	<div style="height: 100%;background:linear-gradient(to right,rgb(129,82,249),rgb(85,141,252));font-size: 14px;min-height: 760px;">
+		<div class="tophader"  >
+		  <van-icon name="arrow-left"   onclick="window.history.go(-1)"/>
+		  <p style="font-weight: 440;">分享邀请</p>
+		</div>
+		<!-- <img style="width: 100%;height: 100%;position: relative;" src="../assets/baana6.png"/> -->
 		<div class="body">
-			<p>我的邀请码</p>
-			<div>{{info}}</div>
-			<button @click="fn1(info,true)">复制</button>
-			<img src="../assets/banyuan.png" style="width: 100.5%;"/>
 			<div id="qrcode" ref="imgsave">
 				<img v-show="myimg" :src="img" alt />
 			</div>
+			<p>我的邀请码: <span>{{info}}</span> </p>
+			<button @click="fn1(info,true)">立即使用</button>
 		</div>
-		<div class="button">
+		<div class="body" style="margin: -28px auto 0;padding-top: 15px;height: 18%;">
+			<p style="margin-top: 0px;"><i>一</i>  第三方分享 <i>一</i></p>
+			<div class="div">
+				<div>
+					<img src="../assets/weix1.png" @click="fn2(infourl)" />
+					<p>微信分享</p>
+				</div>
+				<div>
+					<img src="../assets/qq2.png"  @click="fn2(infourl)"/>
+					<p>QQ分享</p>
+				</div>
+				<div @click="savecode1">
+					<img src="../assets/haibao.png" />
+					<p>生成海报</p>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="button">
 			<div  @click="fn1(infourl,false)" >复制邀请链接</div>
 			<div type="button" @click="savecode1" >生成邀请海报</div>
-		</div>
-		<!-- <img class="img" src="../assets/10099.png" />
-		<div class="title">
-			<img style="width: 100%;" src="../assets/10010.png" />
-			<div class="one">
-				<div id="qrcode" ref="imgsave">
-					<img v-show="myimg" :src="img" alt />
-				</div>
-				<p style="margin-top: 15px;">
-					我的邀请码:
-					<span @click="fn1(info,true)" class="codes">{{info}} <span class="bun">复制</span> </span>
-				</p>
-				<p style="display: flex;margin-left: 10%;margin-top: 3px;">
-					我的邀请链接:
-					<span class="codes" style="display: flex;"><span style="overflow:hidden;
-					  text-overflow:ellipsis;
-					  white-space:nowrap;width: 110px;">{{infourl}}</span><span
-						 class="bun" @click="fn1(infourl,false)">复制</span> </span>
-				</p>
-				<button type="button" @click="savecode1" class="changebton">生成邀请海报</button>
-			</div>
-
 		</div> -->
+	
 		<textarea cols="20" rows="10" id="biao1" style="opacity: 0;height: 1px;">{{info}}</textarea>
 		<textarea cols="20" rows="10" id="biao2" style="opacity: 0;height: 1px;">{{infourl}}</textarea>
 	</div>
@@ -124,22 +120,6 @@
 					duration: 1200
 				});
 			},
-			fn1(s, bool) {
-				if (bool) {
-					if (!!navigator.userAgent.match(/citicbankmobile/i)) {
-						this.fn2(s)
-					} else {
-						this.copyUrl2()
-					}
-				} else {
-					if (!!navigator.userAgent.match(/citicbankmobile/i)) {
-						this.fn2(s)
-					} else {
-						this.copyUrl3()
-					}
-				}
-
-			},
 			fn2(s) {
 				console.log(s)
 				var clipboard = new this.$Clipboard(".copy", {
@@ -149,7 +129,7 @@
 				});
 				clipboard.on("success", () => {
 					this.$toast.success({
-						message: "复制成功",
+						message: "复制成功,请打开微信或QQ分享",
 						duration: 1200
 					});
 					// 释放内存
@@ -191,24 +171,23 @@
 			},
 			savecode1() {
 				var ts = this;
-				if (!!navigator.userAgent.match(/citicbankmobile/i)) {
-					jsBridge.ready(function() {
-						jsBridge.saveImageToAlbum(ts.imgpng, function(succ) {
-							succ ? ts.$toast.success({
-								message: "保存成功",
-								duration: 1200
-							}) : ts.$toast.fail({
-								message: "保存失败：转码失败或没有相册使用权限",
-								duration: 1200
+					// if(jsBridge.ready()){
+						jsBridge.ready(function() {
+							jsBridge.saveImageToAlbum(ts.imgpng, function(succ) {
+								succ ? ts.$toast.success({
+									message: "保存成功",
+									duration: 1200
+								}) : ts.$toast.fail({
+									message: "保存失败：转码失败或没有相册使用权限",
+									duration: 1200
+								});
 							});
 						});
-					});
-				} else {
-					if(ts.imgpng){
-						window.open(ts.imgpng)
-					}
-				}
-
+					// }else{
+					// 	if(ts.imgpng){
+					// 			window.open(ts.imgpng)
+					// 		}
+					// }
 			},
 			savecode() {
 				var ts = this;
@@ -252,44 +231,49 @@
 		}
 	}
 	.body{
-		width: 70%;
-		margin: 0 auto;
-		position: absolute;
-		height: 47%;
+		width: 88%;
+		margin: 50px auto;
+		height: 44%;
 		background-color: #FFFFFF;
-		top: 35%;
-		left: 15%;
 		border-radius: 6px;
 		text-align: center;
-		p{
-			font-size: 13px;
-			color: rgb(164,164,164);
-			margin-top: 12px;
+		padding-top: 30px;
+		.div{
+			display: flex;
+			justify-content: space-around;
+			img{
+				height: 65px;
+				width: 65px;
+				margin-top: 13px;
+			}
+			p{
+				margin-top: 1px;
+			}
 		}
-		div{
-			font-weight: 550;
-			height: 40px;
-			font-size: 26px;
-			// color: rgb(78,90,237);
-			margin-top: 12px;
-			background: linear-gradient(to top, rgb(80,112,225), rgb(80,112,225));
-			-webkit-background-clip: text;
-			color: transparent;
-			-webkit-text-fill-color: transparent;
-			text-fill-color: transparent;
+		p{
+			font-size: 14px;
+			margin-top: 18px;
+			span{
+				font-size: 22px;
+				font-weight: 550;
+				color: rgb(42,103,254)
+			}
+			i{
+				margin: 0 4px;
+			}
 		}
 		button{
-			width: 70px;
-			line-height: 26px;
-			border-radius: 15px;
-			font-size: 13px;
+			width: 86%;
+			line-height: 42px;
+			border-radius: 6px;
+			font-size: 15px;
 			color: #ffffff;
-			margin: 14px 0;
-			background-color: rgb(249,56,113);
+			margin: 28px 0;
+			background-color: rgb(42,103,254);
 		}
 		#qrcode{
-			width: 100px;
-			height: 100px;
+			width: 180px;
+			height: 180px;
 			margin: 0 auto;
 			margin-top: 13px;
 		}

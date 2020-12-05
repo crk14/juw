@@ -1,14 +1,7 @@
 <template>
-	<div style="position: relative;width: 100%;height: 100%;overflow:initial;background-color: #f6f6f6;">
-		<div class="login-t">
-			<div class="tophader">
-				<van-icon name="arrow-left" onclick="window.history.go(-1)" color="#ffffff" />
-				<p>登录</p>
-
-			</div>
-		</div>
+	<div>
 		<div class="login-b">
-			<img src="../assets/logo7.png" />
+			<img src="../assets/11-20.png" />
 			<p class="p">JUW量化</p>
 			<div class="p1">
 				<div></div>
@@ -16,36 +9,29 @@
 				<div></div>
 			</div>
 			<div class="login-body">
-				<div class="one">
-					<span class="left">
-						<span class="img"></span>
-						登录
-					</span>
-					<span @click="$router.push('sign')">注册</span>
-				</div>
-				<div class="togleulbox" style="margin: 0 .32rem;">
+				
+				<div class="togleulbox" style="margin: 1.8rem .32rem;">
 					<div class="loginul">
-						<div style="margin-top: 0rem;background: #f6f6f6;border-radius: 7px;display: flex;line-height: 46px;margin-bottom: 13px;">
-							<p style="margin: 0 29px 0 10px;color: #000;">账号</p>
-							<input style="margin: 0;flex: 1;" type="text" autocomplete="off" name="userName" v-model="logmobile" placeholder="请输入手机号或邮箱" />
+						<div style="margin-top: 0rem;background: #f6f6f6;border-radius: 37px;line-height: 46px;margin-bottom: 20px;">
+							<input style="width: 100%;margin: 0;text-align: center;" type="text" autocomplete="off" name="userName" v-model="logmobile" placeholder="账号" />
 						</div>
-						<div style="margin-top: 0.2rem;background: #f6f6f6;border-radius: 7px;display: flex;line-height: 46px;">
-							<p style="margin: 0 29px 0 10px;color: #000;">密码</p>
-							<input style="margin: 0;flex: 1;" type="password" autocomplete="new-password" name="password" v-model="logpassword" placeholder="请输入密码" />
+						<div style="margin-top: 0.2rem;background: #f6f6f6;border-radius: 23px;line-height: 46px;">
+							<input style="width: 100%; margin: 0;text-align: center;" type="password" autocomplete="new-password" name="password" v-model="logpassword" placeholder="密码" />
 						</div>
-						<div class="pass" >
+						<!-- <div class="pass" > -->
 							
-						<label style="height: 0px;">
+					<!-- 	<label style="height: 0px;">
 							<input type="checkbox" v-model="ispass" style="margin: 0;height: 10px;">
 							<span class="box">
 								<van-icon :style="{opacity:ispass?1:0}" name="success" color="#306ce8" /></span> <span class="text">记住密码</span>
-						</label>
-								<p class="passback" @click="$router.push('/forgetpass')" style="color: #000000;font-size: .27rem;margin-top: -4px;">忘记密码?</p>
-						</div>
+						</label> -->
+						<!-- </div> -->
 
-						<button type="button" class="changebton" @click="login" style="margin: 0.8rem auto .35rem;background: #2e83f7;border-radius: 5px;width: 100%;">登录</button>
-						<a href="https://sapp.dierna.com/NFzu" style="margin: 18px 0 10px 0px;color: #2e83f7;font-size: 14px;display: block;">下载APP</a>
-						<p style="height: 1px;"></p>
+						<button type="button" class="changebton" @click="login" style="border-radius: 25px;">登录</button>
+						<!-- <p class="passback" style="font-size:15px;" @click="$router.push('/forgetpass')" >忘记密码?</p> -->
+						<img id="img" src="../assets/11-2-1.png" @click="$router.push('/forgetpass')"/>
+						<!-- <a href="https://sapp.dierna.com/NFzu" style="margin: 18px 0 10px 0px;color: #2e83f7;font-size: 14px;display: block;">下载APP</a> -->
+						<p class="login-p">还没有账号? <span @click="$router.push('/sign')">立即注册</span> </p>
 					</div>
 				</div>
 			</div>
@@ -70,7 +56,7 @@
 			return {
 				logmobile: "",
 				logpassword: "",
-				ispass: 0,
+				ispass: 1,
 				ispass2: '',
 				bool: false,
 				bool2: false
@@ -198,20 +184,18 @@
 	}
 
 	.login-b {
-		background-color: rgb(246, 246, 246);
 		text-align: center;
 
 		img {
-			margin-top: -50px;
-			border-radius: 50%;
-			height: 100px;
-			width: 100px;
+			height: 58px;
+			width: 190px;
+			margin-top: 60px;
 		}
 
 
 
 		.p {
-			color: rgb(34, 34, 34);
+			color: rgb(111,111,111);
 			font-weight: bold;
 			font-size: 18px;
 			margin: 9px 0 0 0;
@@ -219,17 +203,16 @@
 
 		.p1 {
 			display: flex;
-			color: rgb(34, 34, 34);
+			color: rgb(103,103,103);
 			justify-content: center;
-			font-size: 14px;
-			margin: 21px 0;
-			font-weight: bold;
+			font-size: 13px;
+			margin: 3px 0;
 
 			div {
 				width: 35px;
-				background-color: rgb(34, 34, 34);
+				background-color: rgb(103,103,103);
 				height: 1.3px;
-				margin: 0 11px;
+				margin: 0 15px;
 				margin-top: 9px;
 			}
 		}
@@ -325,5 +308,26 @@
 		left: 0;
 		top: -1px;
 
+	}
+	.passback{
+		text-align: center;
+		background-image: linear-gradient(135deg, rgb(129,82,249),rgb(85,141,252),rgb(50,187,233));   
+		-webkit-background-clip: text;
+		color: transparent;
+
+	}
+	.login-p{
+		margin: 80px auto 0;
+		color: #676767;
+		font-size: 13px;
+		span{
+			color: #000;
+			font-weight: 550;
+		}
+	}
+	#img{
+		height: 21px;
+		margin: 0;
+		width: 98px;
 	}
 </style>

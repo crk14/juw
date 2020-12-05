@@ -1,28 +1,17 @@
 <template>
   <div class="index">
-	  <div style="display: flex;justify-content: space-between;">
-		  <div class="tophader" >
-		    <p style="margin-left: .2rem;">
-		      <img src="../assets/logo6.png" alt />
-		    </p>
-		  </div>
-		  <div class="index-img">
-			  <!-- <img style="width: .7rem;height: .7rem;" src="../assets/yuyan.png"/> -->
-			  <img @click="$router.push('callcenter')" src="../assets/kefu.png" style="margin-bottom: 4px;margin-left: 6px;"/> </div>
-	  </div>
-    
     <van-swipe :show-indicators="false" :autoplay="4000" indicator-color="white">
       <van-swipe-item v-for="(item,i) in info" :key="i">
         <div class="boxall">
-          <div class="box" style="height: 140px;">
-            <img :src="url + item.pic" alt style="height: 100%;"/>
+          <div class="box" style="height: 180px;">
+            <img :src="url + item.pic" alt style="height: 100%;width: 100%;"/>
           </div>
         </div>
       </van-swipe-item>
     </van-swipe>
 
     <div class="gonite">
-      <img src="../assets/msgt.png" alt />
+      <img src="../assets/12-2-1.png" alt />
 
       <div class="gobox" style="height: .4rem;
     width: 84%;
@@ -32,128 +21,42 @@
         </marquee>
 		
       </div>
-	  <div @click="$router.push('more')" style="font-size: 14px;color: rgb(155,155,155);">
-	    更多
-	    </div>
+		<img  @click="$router.push('more')" src="../assets/12-2-3.png"style="margin-right: 0;"  alt />
     </div>
-    <!-- <div class="trading"> -->
-      <!-- <div v-if="img.aotu_market" class="left" :style="{background:'url('+img.aotu_market+')',backgroundSize: '100% 100%'}"> -->
-        <!-- <p class="one">智能交易</p>
-        <p class="two">年化月均回报率5%-15%</p>-->
-      <!-- </div> -->
-      <!-- <div class="right" @click="$router.push('fund')" :style="{background:'url('+img.cr_fund+') 0% 0% / 100% 100%'}"> -->
-	  <!-- <div class="right" :style="{background:'url('+img.cr_fund+') 0% 0% / 100% 100%'}"> -->
-        <!-- <img src="../assets/组16@2x.png" alt />
-        <span>CR基金</span> -->
-      <!-- </div> -->
-    <!-- </div> -->
-    <!-- <div class="trading tradingtwo" style="padding-bottom:.15rem;"> -->
-      <!-- <div v-if="img.follow_market" class="left" :style="{background:'url('+img.follow_market+')',backgroundSize: '100% 100%'}"></div> -->
-      <!-- <div class="right" :style="{background:'url('+img.game+') 0% 0% / 100% 100%'}"> -->
-        <!-- <img src="../assets/组14@2x.png" alt />
-        <span>互动游戏</span> -->
-      <!-- </div> -->
-    <!-- </div> -->
-	<p class="hr" style="height: 1px;margin: 0 20px;background-color: #F5F5F5;"></p>
-	
-	<!-- <div class="index-body">
-		<div class="item">
-			<div>USDT账户</div>
-			<p v-show="movielist.number">{{Number(movielist.number).toFixed(2)}}</p> -->
-			<!-- <p class="one">≈65088.58 CNY</p> -->
-			<!-- <p><span>余额</span></p> -->
-		<!-- </div>
-		<div class="item">
-			<div>JUW账户</div>
-			<p v-show="movielist.safe_num">{{Number(movielist.safe_num).toFixed(2) }}</p> -->
-			<!-- <p class="one">=227.96 CNY</p> -->
-			<!-- <p><span>余额</span></p> -->
-		<!-- </div>
-		<div class="item" :class="{'active':isshow}">
-			<div>点卡账户</div>
-			<p v-show="movielist.point_num">{{Number(movielist.point_num).toFixed(2)}} </p> -->
-			<!-- <p class="one">=16.28 CNY</p> -->
-			<!-- <p><span>即将不足</span></p> -->
-	<!-- 	</div>
-	</div>
-	<p class="hr" style="height: 6px;"></p> -->
-	<!-- <div style="display: flex;width: 100%;" v-if="img && img.cr_index">
-		<div style="width: 60%;height: 2.5rem;"><img :src="url + img.cr_index" style="width: 100%;height: 2.5rem;"/></div>
-		<div style="width: 40%;height: 2.5rem;border-left: 6px solid #f6f7f9;">
-			<div style="width: 100%;text-align: center;height: 47%;position: relative;"><img @click="$router.push('fenxiang')" :src="url + img.cr_share" style="width: 100%;height:100%;"/></div>
-			<p class="hr" style="height: 6%;"></p>
-			<div style="width: 100%;text-align: center;height: 47%;position: relative;"><img @click="$router.push('fuli')" :src="url + img.cr_welfare" style="width: 100%;height:100%;"/></div>
-		</div>
-	</div>
-	<p class="hr" style="height: 6px;"></p> -->
-	<!-- <div class="index-icon">
-		<div  @click="$router.push({path:'more',query:{type:1}})"><img src="../assets/title7.png" style=" margin-bottom: 3px;"/>
-		<p style="margin-top: -1px;">新手指南</p>
-		</div>
-		<div  @click="fn3()"><img src="../assets/title6.png" style=" margin-bottom: 3px;"/>		<p style="margin-top: -1px;">快速充值</p></div> -->
-		<!-- <div @click="fn3(true)"><img src="../assets/title5.png"/>		<p>CR直播</p></div>
-		<div @click="fn3(true)"><img src="../assets/title4.png"/>		<p>自营商场</p></div>
-		<div @click="fn3(true)"><img src="../assets/title3.png"/>		<p>游戏社区</p></div> -->
-	<!-- </div> -->
-    <p class="hr"></p>
 	<div class="bootom">
-	<!-- 	<div class="title">
-			<div style="width: 4px;height: 18px;background-color: rgb(38,136,251);margin-right: 4px;margin-top: 2px;"></div>
-			<div style="font-size: 18px;margin-top: -3px;">行情</div>
-			<div style="margin: 0 7.6%;font-size: 15px;color: rgb(113,106,106);font-weight: 500;" :class="{'active':isshow2==true}" @click="isshow2=true">现货实时行情</div>
-			<div style="margin-right: 9%;font-size: 15px;color: rgb(113,106,106);font-weight: 500;" :class="{'active':isshow2==false}" @click="isshow2=false">合约实时行情</div>
-			<img src="../assets/jiahao.png" @click="tobidui" />
+		
+		<div class="body" style="font-size: 14px;color: rgb(150,159,158);padding: .1rem 0 .1rem .1rem;">
+			<div>名称 <!-- <van-icon v-show="active!=1" @click="active=1" name="play" color="rgb(150,159,158)" style="transform: rotate(270deg);position: absolute;top: 2px;left: 30px;" size="11"/> --> 
+			<!-- <van-icon  v-show="active==1"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(270deg);position: absolute;top: 2px;left: 30px;" size="11"/> -->
+			<!-- <van-icon  v-show="active!=2" @click="active=2" name="play" color="rgb(150,159,158)" style="transform: rotate(90deg);position: absolute;top: 8px;left: 30px;" size="11"/> --> <span style="margin-left: 3px;">/ 24H量</span> 
+			<!-- <van-icon  v-show="active==2"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(90deg);position: absolute;top: 8px;left: 30px;" size="11"/> -->
+			<!-- <van-icon v-show="active!=3"  @click="active=3" name="play" color="rgb(150,159,158)" style="transform: rotate(270deg);position: absolute;top: 2px;left: 93px;" size="11"/> -->
+			<!-- <van-icon  v-show="active==3"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(270deg);position: absolute;top: 2px;left: 93px" size="11"/> -->
+			<!-- <van-icon v-show="active!=4"  @click="active=4" name="play" color="rgb(150,159,158)" style="transform: rotate(90deg);position: absolute;top: 8px;left: 93px;" size="11"/> -->
+			<!-- <van-icon  v-show="active==4"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(90deg);position: absolute;top: 8px;left: 93px" size="11"/> -->
+			</div>
+			<div style="text-align: right;margin-left: 25%;">最新价
+			<!-- <van-icon v-show="active!=5"  @click="active=5" name="play" color="rgb(150,159,158)" style="transform: rotate(270deg);position: absolute;top: 2px;right: -14px;" size="11"/>
+			<van-icon  v-show="active==5"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(270deg);position: absolute;top: 2px;right: -14px;;" size="11"/>
+			<van-icon v-show="active!=6"  @click="active=6" name="play" color="rgb(150,159,158)" style="transform: rotate(90deg);position: absolute;top: 8px;right: -14px;" size="11"/>
+			<van-icon  v-show="active==6"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(90deg);position: absolute;top: 8px;right: -14px;;" size="11"/> -->
+			</div>
+			<div style="margin-right: 15px;">涨跌幅
+			<!-- <van-icon v-show="active!=7"  @click="active=7" name="play" color="rgb(150,159,158)" style="transform: rotate(270deg);position: absolute;top: 2px;left: 43px;" size="11"/>
+			<van-icon  v-show="active==7"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(270deg);position: absolute;top: 2px;left: 43px;" size="11"/>
+			<van-icon v-show="active!=8"  @click="active=8" name="play" color="rgb(150,159,158)" style="transform: rotate(90deg);position: absolute;top: 8px;left: 43px;" size="11"/>
+			<van-icon v-show="active==8"  @click="active=0" name="play" color="#d04a62" style="transform: rotate(90deg);position: absolute;top: 8px;left: 43px;" size="11"/> -->
+			</div>
 		</div>
-		<div class="body">
-			<div>名称</div>
-			<div>最新价</div>
-			<div>涨跌幅</div>
-		</div> -->
 		<div v-show="isshow2" class="body" v-for="(item,index) in list4" style="padding: 0.19rem 0.17rem 0.19rem 0.1rem;" :key="index">
-			<!-- <img  class="index-img1" :src="'../assets/'+item.symbol+'.png'"/> -->
-			<img  v-show="item.symbol == 'BTC'" class="index-img1" src="../assets/btc.png"/>
-			<img  v-show="item.symbol == 'ETH'" class="index-img1" src="../assets/eth.png"/>
-			<img  v-show="item.symbol == 'ZEC'" class="index-img1" src="../assets/zec.png"/>
-			<img  v-show="item.symbol == 'HT'" class="index-img1" src="../assets/HT2.png"/>
-			<img  v-show="item.symbol == 'XRP'" class="index-img1" src="../assets/xrp.png"/>
-			<img  v-show="item.symbol == 'LTC'" class="index-img1" src="../assets/ltc.png"/>
-			<img  v-show="item.symbol == 'BCH'" class="index-img1" src="../assets/bch.png"/>
-			<div class="one" style="flex: 1;">{{item.symbol}}<span style="color: #999999;font-size: 13px;">/USDT</span><p>24H量 {{parseInt(item.amount)}}</p> </div>
-			<div class="two" style="flex: 1;" :class="{'active1':item.up_or_down<0}">{{item.close}} <p>≈{{(item.close*7).toFixed(1)}}CNY</p></div>
-			<div v-show="item.up_or_down<0" class="three active" >{{item.up_or_down.toFixed(2)}}%</div>
-			<div v-show="item.up_or_down>0" class="three" style="display: flex;"><div style="font-size: 12px;margin-left: 5px;height: 27px;line-height: 27px;">+</div> <span style="">{{item.up_or_down.toFixed(2)}}%</span> </div>
+			<div class="one" style="flex: 1;"><span style="font-weight: 550;margin: 0;">{{item.symbol}}</span> <span style="color: #999999;font-size: 12px;margin-left: 5px;">/USDT</span>
+			<p>24H量 {{item.amount?parseInt(item.amount):0}}张</p> </div>
+			<div class="two" style="flex: 1;text-align: right;margin-right: 20px;margin-top: 9px;">{{item.close?item.close:0}} </div>
+			<div v-show="item.up_or_down<0" class="three active" >{{item.up_or_down?item.up_or_down.toFixed(2):0}}%</div>
+			<div v-show="item.up_or_down>0" class="three" style="display: flex;"><div style="font-size: 12px;margin-left: 13%;height: 27px;line-height: 27px;">+</div> <span style="">{{item.up_or_down.toFixed(2)}}%</span> </div>
 		</div>
 	</div>
-	<!-- 交易币对弹窗 -->
-	   <van-popup
-	     v-model="bidui"
-	     position="right"
-	     class="poup"
-	     :style="{ height: '100%' ,width:'100%'}"
-	   >
-	     <div class="tophader">
-	       <van-icon name="arrow-left" @click="bidui = false" />
-	       <p>添加货币</p>
-			
-	     </div>
-		 
-		  <div class="poup-body">
-			  <span>货币对</span>
-			  <!-- <span>行情</span> -->
-			  <span>操作</span>
-		  </div>
-	     <ul>
-	<li class="li-item"  v-for="(item,i) in list3"
-	         :key="i" >
-		 <div style="padding-left: .4rem;font-size: 14px;width: 86px;">{{item.symbol1.toUpperCase()}}/<span style="color: #CCCCCC;">{{item.symbol.toUpperCase()}}</span> </div>
-		 <div style="padding-left: 1rem;color: #2284fd;" v-show="!item.bool" @click="selecli_symbolcli(item.symbol1)">添加</div>
-		 <div style="padding-left: 1.62rem;color: #C0C5CB;" v-show="item.bool">已添加</div>
-	</li>
-	      <!-- <div class="beijing">
-	         <button class="changebton" @click="selecli_symbolcli()">确定选择</button>
-	       </div> -->
-	     </ul>
-	   </van-popup>
+	
   </div>
 </template>
 
@@ -163,10 +66,6 @@ export default {
     return {
       info: [],
       list: [],
-      // list1:[],
-      // mygao: [],
-      // title: "",
-      // img:{},
       arr:[],
       newlink:'',
 	  isshow:true,
@@ -176,7 +75,8 @@ export default {
 	  list3:[],
 	  list4:[],
 	  time:'',
-	  url:''
+	  url:'',
+	  active:0
     };
   },
   created() {
@@ -185,18 +85,6 @@ export default {
 	  }else{  // 本地环境
 	  this.url = 'http://192.168.0.104:81'
 	  }
-    // this.$axios
-    //   .get("/index/article/aotuMarketImg")
-    //   .then(res => {
-    //     this.img = res.data.info;
-    //   });
-
-      // this.$axios
-      // .get("/index/article/indexBannerArt")
-      // .then(res => {
-      //   this.arr = res.data.info;
-      // });
-
     this.$axios
       .get("/index/article/image", { page: 1, limit: 10 })
       .then(res => {
@@ -211,19 +99,6 @@ export default {
 
    
 
-  //   this.$axios
-  //     .get("/index/article/indexArt", { page: 1, limit: 10 })
-  //     .then(res => {
-  //       this.mygao = res.data.info;
-  //     });
-	 //  this.$axios
-	 //  .get("/index/mywallet/mywalletInfo", { page: 1, limit: 1 })
-	 //  .then(res => {
-	 //    if(res.data.info){
-	 //      this.movielist = res.data.info
-		// }
-	  		 
-	 //  });
 	  this.$axios
 	  .get("/index/rank/get_market")
 	  .then(res => {
@@ -241,16 +116,19 @@ export default {
   	clearInterval(this.time)
 	this.time = null
   },
-  mounted: function() {},
+  watch:{
+	  active(oldvalue,newvalue){
+		  console.log(oldvalue)
+	  }
+  },
   methods: {
 	  fn1(){
-		  
+		  clearInterval(this.time)
 		  this.time = setInterval(()=>{
 		  		  this.$axios
 		  		  .get("/index/rank/get_market")
 		  		  .then(res => {
-		  		   // console.log(res.data.data)
-		  		  		this.list4 = res.data.data
+					  this.list4 = res.data.data
 		  		  });
 		  },10000)
 		  localStorage.setItem('time',JSON.stringify( this.time))
@@ -286,39 +164,6 @@ export default {
 <style lang="less" scoped>
 .note {
   overflow: hidden;
-  .van-swipe {
-    margin: auto;
-    margin-top: 0.2rem;
-    height: 3rem;
-    .boxall {
-      padding: 0 4%;
-      height: 100%;
-    }
-    .box {
-      // border-radius: 6px;
-      color: white;
-      height: 100%;
-      // background: #78aef9;
-      // box-shadow: 0 0 10px #78aef9;
-    }
-    .van-swipe-item {
-      p {
-        padding-left: 0.3rem;
-      }
-      p:nth-of-type(1) {
-        font-size: 0.5rem;
-        padding-top: 0.6rem;
-      }
-      p:nth-of-type(2) {
-        font-size: 0.32rem;
-        margin-top: 0.55rem;
-        margin-bottom: 0.1rem;
-      }
-      p:nth-of-type(3) {
-        font-size: 0.78rem;
-      }
-    }
-  }
 }
 .note .van-swipe {
   margin-top: 0;
@@ -341,10 +186,14 @@ export default {
   }
 }
 .gonite {
-  padding: 0.1rem 0.3rem;
+	border-top: 1px solid #eee;
+	height: 32px;
+	border-bottom: 1px solid #eee;
+  padding: 0.1rem 0.2rem .1rem .3rem;
   height: 0.4rem;
   overflow: hidden;
   display: flex;
+  margin: 2px 0;
   .gobox {
     display: flex;
   }
@@ -355,11 +204,11 @@ export default {
     font-weight: bold;
   }
   img {
-    height: 0.22rem;
+    height: 0.32rem;
     position: relative;
     margin-right: 0.2rem;
     top: 50%;
-    margin-top: -0.11rem;
+    margin-top: -0.17rem;
   }
   .vanbar {
     width: 100%;
@@ -469,7 +318,6 @@ export default {
   justify-content: space-between;
   width: 94%;
   margin: auto;
-  // border-bottom: 1px solid #f6f7f9;
   padding-bottom: 0.2rem;
   margin-bottom: 0.2rem;
   border-bottom: 1px solid #f7f7f7;
@@ -525,11 +373,9 @@ export default {
   }
 }
 .index-icon{
-	// padding: 0.2rem 0.3rem;
 	display: flex;
 	padding: .2rem  1%;
 	div{
-		// width: 20%;
 		flex: 1;
 		height: .87rem;
 		text-align: center;
@@ -543,24 +389,6 @@ export default {
 			color: #000000;
 		}
 	}
-	
-	// justify-content: space-between;
-	// .item{
-	// 	width: .85rem;
-	// 	height: .85rem;
-	// 	border-radius: 50%;
-	// 	background-color: #000;
-	// 	text-align: center;
-	// 	img{
-	// 		width: 0.55rem;
-	// 		height: .55rem;
-	// 		margin-top: .14rem;
-	// 	}
-	// 	margin: 0 0 .14rem .155rem;
-	// }
-	// .text{
-	// 	font-size: 0.28rem;
-	// }
 }
 .index-img{
 	margin-top: 6px;
@@ -574,8 +402,6 @@ export default {
 .index-body{
 	padding: .24rem .24rem;
 	display: flex;
-	// justify-content: space-between;
-	
 	.item{
 		flex: 1;
 		text-align: center;
@@ -594,10 +420,7 @@ export default {
 			margin: .1rem 0;
 		}
 		.one{
-			// width: 50%;
-			// margin-left: 25%;
 			font-size: 15px;
-			// background-color: #FCEDE1;
 			color: #000000;
 		}
 	}
@@ -605,7 +428,6 @@ export default {
 		p{
 			color: #25a67e;
 			span{
-				// font-size: 13px;
 				background-color: rgb(252,222,224);
 			}
 		}
@@ -637,7 +459,13 @@ export default {
 		justify-content: space-between;
 		color: rgb(96,94,95);
 		padding: .1rem .3rem .1rem .1rem;
-		border-bottom: 1.3px solid #EEEEEE;
+		// border-bottom: 1.3px solid #EEEEEE;
+		div{
+			position: relative;
+			span{
+				margin-left: 2px;
+			}
+		}
 		.one{
 			font-size: 15.5px;
 			color: #000000;
@@ -650,8 +478,6 @@ export default {
 			}
 		}
 		.two{
-			color: rgb(37,166,126);
-			// font-weight: 550;
 			p{
 				font-weight: 540;
 				font-size: 12px;
@@ -664,18 +490,19 @@ export default {
 			background-color: rgb(0,191,137);
 			margin-top: 5px;
 			height: 27px;
-			width: 52px;
+			width: 65px;
 			line-height: 27px;
 			text-align: center;
 			font-size: 13px;
+			border-radius: 4px;
 		}
 		.active{
 			color: #FFFFFF;
-			background-color: rgb(255,120,88)
+			background-color: rgb(208,74,98)
 			
 		}
 		.active1{
-			color: rgb(255,120,88);
+			color: rgb(208,74,98);
 			
 		}
 	}
@@ -713,6 +540,7 @@ export default {
 		display: flex;
 		padding: .2rem;
 		border-bottom: 1px solid #E5E5E5;
+		
 		span{
 			flex: 1;
 			font-size: 16px;
@@ -728,7 +556,6 @@ export default {
 			flex: 1;
 			font-weight: 500;
 			text-align: center;
-			// padding-left: .2rem;
 		}
 		
 	}
@@ -739,4 +566,5 @@ export default {
 		margin-right: 9px;
 		margin-top: 5px;
 	}
+	
 </style>

@@ -105,16 +105,14 @@
 						<div class="right" style="color: rgb(201,201,202);">{{item.time}} 完全成交</div>
 					</div>
 					<div class="body">
-						<div>委托数量{{'('+item.symbol_deal.toUpperCase()+')'}}
+						<div>委托数量{{'('+item.symbol_deal.toUpperCase()+')'}}:
 							<span>{{item.cjsl.toFixed(4)}}</span>
 						</div>
-						<div>持仓均价({{symbol.toUpperCase()}}) <span>{{item.avg_price?item.avg_price:item.cjjj}}</span></div>
-						<div style="text-align: right;">平仓均价({{symbol.toUpperCase()}})<span style="right: 0;">{{item.price_avg}}</span></div>
+						<div>持仓均价({{symbol.toUpperCase()}}): <span>{{item.avg_price?item.avg_price:item.cjjj}}</span></div>
 					</div>
 					<div class="body" style="margin-top: .15rem;">
-						<div>手续费(点卡) <span>{{item.point_num?item.point_num:item.point_num==0?0:item.point>0&&item.cjsy>0?(item.point * 0.3*7).toFixed(4):item.point<0?0:item.cjsy>0?(item.cjsy * 0.3*7).toFixed(4):0}}</span></div>
-						<div>成交利润({{symbol.toUpperCase()}}) <span>{{Number(item.cjsy).toFixed(4) }}</span></div>
-						<div style="text-align: right;">利润率(%)<span style="right: 0;">{{item.syl}}</span></div>
+						<div>平仓均价({{symbol.toUpperCase()}}): <span style="right: 0;">{{item.price_avg}}</span></div>
+						<div>成交利润({{symbol.toUpperCase()}}): <span>{{Number(item.cjsy).toFixed(4) }}</span></div>
 					</div>
 				</li>
 			</ul>
@@ -580,12 +578,12 @@
 				color: rgb(201, 201, 202);
 				font-size: 0.26rem;
 				position: relative;
-				height: 0.71rem;
+				height: 0.41rem;
 
 				span {
-					position: absolute;
-					top: 0.45rem;
-					left: 0;
+					// position: absolute;
+					// top: 0.45rem;
+					// left: 0;
 					font-size: 0.27rem;
 					color: rgb(36, 51, 69);
 				}
